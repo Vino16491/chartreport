@@ -1,9 +1,8 @@
 import * as functions from 'firebase-functions';
-import express = require("express");
-import bodyParser = require("body-parser");
-import csvtojson = require('csvtojson');
-// import multer = require('multer');
-import file_upload = require('express-fileupload');
+import * as express from "express";
+import * as bodyParser from "body-parser";
+import * as csvtojson from 'csvtojson';
+import * as file_upload from 'express-fileupload';
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
@@ -41,10 +40,13 @@ app.get('/',(req, res) =>{
 // })
 
 app.post('/reportfile', (req, res)=>{
-    // let csvData = req.files.csvfile
+    let csvDataBuffer = Buffer.from(JSON.stringify(req.body));
+    let csvData = JSON.parse(csvDataBuffer.toString());
+    let csvDataString = csvData.data
     // let csv = (csvData)=>csvData.data.toString('utf8')
-    // console.log(csvData);
-    // return csvtojson().fromString(csvData).then(json => {return res.status(201).json({csv:csvData, json:json})})
+    // console.log(JSON.stringify(csvDataString));
+    return csvtojson().fromString(csvDataString).then(json => {return res.status(201).json({csv:csvDataString, json:json})})
+    // return csvtojson().on('data', (csvDataString)=>{const jsonStr = csvDataString.toString('utf8')})?
 })
 
 exports.chartreportapi = functions.https.onRequest(app)
