@@ -3,7 +3,6 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as csvtojson from 'csvtojson';
 import * as file_upload from 'express-fileupload';
-
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 // const upload = multer();
@@ -40,11 +39,11 @@ app.get('/',(req, res) =>{
 // })
 
 app.post('/reportfile', (req, res)=>{
-    let csvDataBuffer = Buffer.from(JSON.stringify(req.body));
-    let csvData = JSON.parse(csvDataBuffer.toString());
-    let csvDataString = csvData.data
+    let csvDataBuffer = JSON.stringify(req.body);
+    let csvData = JSON.parse(csvDataBuffer).data;
+    let csvDataString = csvData.toString('utf8')
     // let csv = (csvData)=>csvData.data.toString('utf8')
-    // console.log(JSON.stringify(csvDataString));
+    console.log(csvData.toString('utf8'));
     return csvtojson().fromString(csvDataString).then(json => {return res.status(201).json({csv:csvDataString, json:json})})
     // return csvtojson().on('data', (csvDataString)=>{const jsonStr = csvDataString.toString('utf8')})?
 })
