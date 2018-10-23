@@ -4,7 +4,7 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
-
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatInputModule } from "@angular/material/input";
 import { MatNativeDateModule, MatSortModule } from "@angular/material";
@@ -20,6 +20,7 @@ import { AppService } from "./app.service";
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,

@@ -4,7 +4,7 @@
 <div>
 	<div>
 		<div>
-			<form enctype="multipart/form-data" #inputfile="ngForm">
+			<form enctype="multipart/form-data">
 
 				<input type="file" style="display:none" (change)="filepost($event.target.files)" #doctorFileUpload>
       <button mat-raised-button color="primary" (click)="doctorFileUpload.click()"><mat-icon matSuffix>cloud_upload</mat-icon><span style="margin-left:10px">Doctor Data Upload</span></button>
@@ -83,7 +83,7 @@
 <div>
 	<div>
 		<div>
-			<form enctype="multipart/form-data" #inputfile="ngForm">
+			<form enctype="multipart/form-data">
 
 				<input type="file" style="display:none" (change)="productfilepost($event.target.files)" #productFileUpload>
       <button mat-raised-button color="primary" (click)="productFileUpload.click()"><mat-icon matSuffix>cloud_upload</mat-icon><span style="margin-left:10px">Product Data Upload</span></button>
@@ -131,7 +131,7 @@
 <div>
 	<div>
 		<div>
-			<form enctype="multipart/form-data" #inputfile="ngForm">
+			<form enctype="multipart/form-data">
 
 				<input type="file" style="display:none" (change)="employeefilepost($event.target.files)" #employeeFileUpload>
       <button mat-raised-button color="primary" (click)="employeeFileUpload.click()"><mat-icon matSuffix>cloud_upload</mat-icon><span style="margin-left:10px">Employee Data Upload</span></button>
