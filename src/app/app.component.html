@@ -1,8 +1,220 @@
+<div><h1 style="text-align:center">Excel Data</h1></div>
+
+<!-- doctor file upload -->
 <div>
-  <h1 style="text-align:center">CSV File Upload</h1>
-  <form enctype="multipart/form-data">
-    
-      <input type="file" name="csvreport" id="csvreport" (change)="fileupload($event)">
-    
-  </form>
+	<div>
+		<div>
+			<form enctype="multipart/form-data" #inputfile="ngForm">
+
+				<input type="file" style="display:none" (change)="filepost($event.target.files)" #doctorFileUpload>
+      <button mat-raised-button color="primary" (click)="doctorFileUpload.click()"><mat-icon matSuffix>cloud_upload</mat-icon><span style="margin-left:10px">Doctor Data Upload</span></button>
+    </form>
+    </div>
+</div>
+
+<br>
+<div>
+<mat-table [dataSource]="doctorDataSource" matSort>
+  <ng-container matColumnDef="Doctor_ID">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Doctor_ID</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Doctor_ID}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Doctor_Name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Doctor_Name</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Doctor_Name}}</mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="DOB">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>DOB</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.DOB}}</mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Employee_Responsible">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Employee_Responsible</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Employee_Responsible}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Mobile">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Mobile}}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="Address">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Address</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Address}}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="PinCode">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>PinCode</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.PinCode}}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="City">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>City</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.City}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="District">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>District</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.District}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="State">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>State</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.State}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Country">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Country</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Country}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Area_of_Specializations">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Area_of_Specializations</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Area_of_Specializations}}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="doctorDisplayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row, columns:doctorDisplayedColumns;"></mat-row>
+</mat-table>
+
+<mat-paginator #paginator [pageSize]="1" [pageSizeOptions]="[1,5,10,20]"></mat-paginator>
+
+</div>
+</div>
+<br>
+
+
+<div>
+	<div>
+		<div>
+			<form enctype="multipart/form-data" #inputfile="ngForm">
+
+				<input type="file" style="display:none" (change)="productfilepost($event.target.files)" #productFileUpload>
+      <button mat-raised-button color="primary" (click)="productFileUpload.click()"><mat-icon matSuffix>cloud_upload</mat-icon><span style="margin-left:10px">Product Data Upload</span></button>
+    </form>
+    </div>
+</div>
+
+<br>
+<div>
+<mat-table [dataSource]="productDataSource" matSort>
+  <ng-container matColumnDef="Product_ID">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Product_ID</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Product_ID}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Product_Name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Product_Name</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Product_Name}}</mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Product_Category">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Product_Category</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Product_Category}}</mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Unit_Of_Measure">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Unit_Of_Measure</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Unit_Of_Measure}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="productDisplayColumns"></mat-header-row>
+  <mat-row *matRowDef="let row, columns:productDisplayColumns;"></mat-row>
+</mat-table>
+
+<mat-paginator #paginator [pageSize]="1" [pageSizeOptions]="[1,5,10,20]"></mat-paginator>
+
+</div>
+</div>
+
+<br>
+
+<!-- employee file upload -->
+<div>
+	<div>
+		<div>
+			<form enctype="multipart/form-data" #inputfile="ngForm">
+
+				<input type="file" style="display:none" (change)="employeefilepost($event.target.files)" #employeeFileUpload>
+      <button mat-raised-button color="primary" (click)="employeeFileUpload.click()"><mat-icon matSuffix>cloud_upload</mat-icon><span style="margin-left:10px">Employee Data Upload</span></button>
+    </form>
+    </div>
+</div>
+
+
+<br>
+
+<div>
+<mat-table [dataSource]="employeeDataSource" matSort>
+  <ng-container matColumnDef="Employee_ID">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Employee_ID</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Employee_ID}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Employee_Name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Employee_Name</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Employee_Name}}</mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="DOB">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>DOB</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.DOB}}</mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Mobile">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Mobile}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Address">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Address</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Address}}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="PinCode">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>PinCode</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.PinCode}}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="City">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>City</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.City}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="District">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>District</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.District}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="State">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>State</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.State}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Country">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Country</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Country}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="DOJ">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>DOJ</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.DOJ}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Designation">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Designation</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Designation}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Manager">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Manager</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Manager}}</mat-cell>
+  </ng-container>
+   <ng-container matColumnDef="PAN">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>PAN</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.PAN}}</mat-cell>
+  </ng-container>
+   <ng-container matColumnDef="Adhaar">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Adhaar</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Adhaar}}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="employeeDisplayColumns"></mat-header-row>
+  <mat-row *matRowDef="let row, columns:employeeDisplayColumns;"></mat-row>
+</mat-table>
+
+<mat-paginator #paginator [pageSize]="1" [pageSizeOptions]="[1,5,10,20]"></mat-paginator>
+
+</div>
 </div>
