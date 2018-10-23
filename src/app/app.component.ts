@@ -1,21 +1,30 @@
 import { Component } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-
+import * as csvtojson from 'csvtojson';
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
+  customdata;
+  productsdata;
+  employeedata;
+  doctordata;
   constructor(private http: HttpClient) {}
 
-  fileupload(files: FileList) {
-    let file: File = files.item(0);
-    let formData = new FormData();
+  fileupload(event) {
+    let file: File = event.target.files[0]
+    let fileReader : FileReader = new FileReader();
+    fileReader.readAsText(file)
+    // console.log(fileReader.result)
+    fileReader.onload = (ev)=>{
+      let csvdata = fileReader.result.toString()
+      return csvtojson().fromString(csvdata).then(json=>{
 
-    formData.append("file", file, file.name);
-    this.http.post('http://localhost:5000/chartreportx/us-central1/chartreportapi/reportfile', formData)
-    .subscribe(data=>{console.log(JSON.stringify(data))}, err=>{console.log(err)});
-    console.log(JSON.stringify(file.name));
+        console.log(JSON.stringify(json))
+      
+    })}
+    
   }
 }
