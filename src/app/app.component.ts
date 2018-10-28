@@ -139,6 +139,8 @@ export class AppComponent {
       // console.log(fileReader.result)
       fileReader.onload = ev => {
         let csvdata = fileReader.result.toString();
+        let body = {data:csvdata};
+      // return this.http.post('http://localhost:5000/chartreportx/us-central1/chartreportapi/reportfile', body).subscribe((data:any)=>this.doctorDataSource = data.json);
         return csvtojson()
           .fromString(csvdata)
           .then(json => {

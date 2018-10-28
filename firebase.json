@@ -19,7 +19,7 @@
         "destination": "/index.html"
       },
       {
-        "source": "/report",
+        "source": "/reportfile",
         "function": "chartreportapi"
       }
     ]
